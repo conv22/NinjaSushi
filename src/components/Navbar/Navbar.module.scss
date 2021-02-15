@@ -1,0 +1,339 @@
+@import '../../App.scss';
+$wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
+.header {
+  position: relative;
+  z-index: 25;
+}
+.nav {
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 88px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0 48px 0 34px;
+  font-family: $font-family;
+  font-size: 0.9vw;
+}
+.ninja_logo {
+  background: url('../../assets/images/icons/logo.svg') center no-repeat;
+  background-size: contain;
+  width: 218px;
+  height: 48px;
+}
+.links_list {
+  display: flex;
+  padding-left: 16px;
+  margin-left: 56px;
+  height: 100%;
+  .link {
+    list-style: none;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 16px;
+    position: relative;
+    font-weight: 500;
+    color: $main-color;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+}
+.link:hover {
+  color: $orange-color;
+  transition: 0.2s;
+}
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0%;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: $orange-color;
+  transition: 0.2s ease;
+}
+.link:hover::after {
+  width: 100%;
+}
+%align-flex {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0 12px;
+  position: relative;
+  font-weight: 600;
+}
+.tel {
+  @extend %align-flex;
+  margin-left: 125px;
+  cursor: pointer;
+}
+.tel:hover > .icon {
+  z-index: 999;
+}
+.tel:hover > .tel_wrapper {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: 0.3s ease;
+}
+.fav {
+  @extend %align-flex;
+  cursor: text;
+}
+.fav:hover > .fav_wrapper {
+  visibility: visible;
+  opacity: 1;
+}
+.account {
+  @extend %align-flex;
+  cursor: text;
+}
+.account:hover > .account_wrapper {
+  visibility: visible;
+  opacity: 1;
+}
+
+//wrappers
+
+.tel_wrapper {
+  background: #fff;
+  box-shadow: $wrapper-shadow;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: -24px;
+  position: absolute;
+  padding-top: 7px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  width: 256px;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+}
+.tel_phone {
+  margin-left: 72px;
+  line-height: 24px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.64);
+  text-decoration: none;
+}
+
+.small {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.small:nth-of-type(1) {
+  padding-left: 72px;
+}
+.small:nth-of-type(2) {
+  padding-left: 72px;
+  line-height: 1.43;
+}
+
+.fav_wrapper {
+  box-shadow: $wrapper-shadow;
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: -24px;
+  width: 228px;
+  padding: 24px;
+  padding-top: 28px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+.fav_title {
+  color: $main-color;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  img {
+    margin-right: 12px;
+  }
+}
+.notes {
+  border-radius: 4px;
+  background-color: rgba(249, 187, 0, 0.12);
+  border: 1px solid #f9bb00;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 1.65;
+}
+.logbtn {
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid $orange-color;
+  color: $orange-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+.logbtn:hover {
+  background: $orange-color;
+  color: #fff;
+}
+.log_text {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.registerbtn {
+  text-align: center;
+  color: $orange-color;
+  font-size: 14px;
+  line-height: 1.43;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.account_wrapper {
+  background: #fff;
+  box-shadow: $wrapper-shadow;
+  border-radius: 4px;
+  width: calc(100% + 48px);
+  padding: 24px;
+  padding-top: 27px;
+  position: absolute;
+  top: 0;
+  left: -24px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.2s;
+}
+.account_title {
+  display: flex;
+  align-items: center;
+  color: $main-color;
+}
+//icons
+
+.icon {
+  margin-right: 12px;
+}
+
+.title {
+  color: $main-color;
+}
+.hamburger {
+  width: 32px;
+  height: 32px;
+  position: fixed;
+  right: 16px;
+  top: 12px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  display: none;
+  span {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #000;
+    margin: auto;
+    left: 0;
+    right: 0;
+    transition: 0.2s;
+  }
+  span:nth-of-type(1) {
+    top: 6px;
+  }
+  span:nth-of-type(2) {
+    top: 0px;
+    bottom: 0;
+  }
+  span:nth-of-type(3) {
+    bottom: 6px;
+  }
+  span:nth-of-type(4) {
+    opacity: 0;
+    visibility: hidden;
+    height: 24px;
+    width: 2px;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .nav {
+    height: 68px;
+    padding: 0 16px;
+  }
+  .ninja_logo {
+    width: 168px;
+    height: 37px;
+  }
+  .links_list {
+    margin-left: 24px;
+  }
+  .link {
+    font-size: 14px;
+  }
+  .small:nth-of-type(1) {
+    visibility: hidden;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .title {
+    display: none;
+  }
+  .tel {
+    margin-left: auto;
+    margin-right: 48px;
+  }
+  .fav {
+    margin-right: 48px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .icon {
+    filter: grayscale(1);
+  }
+}
+@media screen and (max-width: 1000px) {
+  .nav {
+    height: 56px;
+    padding: 0 16px;
+    padding-right: 48px;
+  }
+  .ninja_logo {
+    width: 160px;
+    height: 35px;
+  }
+  .links_list {
+    display: none;
+  }
+}
+@media screen and (max-width: 650px) {
+  .ninja_logo {
+    width: 36px;
+    height: 41px;
+    background: url('../../assets/images/icons/mobile-logo.svg') center
+      no-repeat;
+    background-size: contain;
+  }
+}

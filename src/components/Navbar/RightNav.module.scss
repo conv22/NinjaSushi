@@ -1,0 +1,86 @@
+@import '../../App.scss';
+.aside {
+  width: 420px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  position: fixed;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 88px;
+  z-index: 10;
+  background-color: #fff;
+  transition: 0.2s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9vw;
+  justify-content: center;
+}
+.title {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  .text {
+    margin-left: 20px;
+    line-height: 1.2;
+    color: rgba(0, 0, 0, 0.32);
+  }
+}
+.cart {
+  width: 94px;
+  height: 94px;
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px;
+}
+.link {
+  flex-basis: 33%;
+  list-style: none;
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+  margin-bottom: 8px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+.link:hover {
+  color: $orange-color;
+}
+.order_message {
+  text-align: center;
+  .order_button {
+    display: inline-flex;
+    height: 40px;
+    padding: 0 16px;
+    align-items: center;
+    border: 1px solid $orange-color;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    color: $orange-color;
+    margin-top: 12px;
+    text-decoration: none;
+  }
+  .order_button:hover {
+    color: #fff;
+    background-color: $orange-color;
+  }
+}
+@media screen and (max-width: 1500px) {
+  .aside {
+    width: 336px;
+  }
+  .cart {
+    width: 64px;
+    height: 64px;
+  }
+}
+@media screen and (max-width: 1250px) {
+  .aside {
+    display: none;
+  }
+}
