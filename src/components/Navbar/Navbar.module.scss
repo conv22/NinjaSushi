@@ -226,9 +226,13 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   transition: 0.2s;
 }
 .account_title {
-  display: flex;
-  align-items: center;
   color: $main-color;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  .account_lk {
+    white-space: nowrap;
+  }
 }
 //icons
 

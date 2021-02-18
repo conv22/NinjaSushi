@@ -11,32 +11,28 @@ const LeftNav: React.FC = () => {
   return (
     <aside>
       <div className={classes.aside}>
-        <div className={classes.aside_link}>
-          <img src={roll} alt='' />
-          <span className={classes.link_title}>Роллы</span>
-        </div>
-        <div className={classes.aside_link}>
-          <img src={sushi} alt='' />
-          <span className={classes.link_title}>Суши</span>
-        </div>
-        <div className={classes.aside_link}>
-          <img src={set} alt='' />
-          <span className={classes.link_title}>Сеты</span>
-        </div>
-        <div className={classes.aside_link}>
-          <img src={burr} alt='' />
-          <span className={classes.link_title}>Закуски</span>
-        </div>
-        <div className={classes.aside_link}>
-          <img src={drinks} alt='' />
-          <span className={classes.link_title}>Напитки</span>
-        </div>
-        <div className={classes.aside_link}>
-          <img src={sia} alt='' />
-          <span className={classes.link_title}>Соусы</span>
-        </div>
+        <Link title={'Роллы'} img={roll} />
+        <Link title={'Суши'} img={sushi} />
+        <Link title={'Сеты'} img={set} />
+        <Link title={'Закуски'} img={burr} />
+        <Link title={'Напитки'} img={drinks} />
+        <Link title={'Соусы'} img={sia} />
       </div>
     </aside>
+  );
+};
+
+type LinkProps = {
+  title: string;
+  img: string;
+};
+
+const Link: React.FC<LinkProps> = ({ title, img }) => {
+  return (
+    <div className={classes.aside_link}>
+      <img src={img} alt='' />
+      <span className={classes.link_title}>{title}</span>
+    </div>
   );
 };
 

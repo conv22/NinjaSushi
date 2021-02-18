@@ -3,8 +3,6 @@ import classes from './Navbar.module.scss';
 import tel from '../../assets/images/icons/phone.svg';
 import heart from '../../assets/images/icons/heart.svg';
 import people from '../../assets/images/icons/people.svg';
-import { LeftNav } from './LeftNav';
-import { RightNav } from './RightNav';
 
 const Navbar: React.FC = () => {
   return (
@@ -44,12 +42,8 @@ const Navbar: React.FC = () => {
                 Для просмотра избранных товаров вам нужно авторизоваться
               </div>
               <span className={classes.log_text}>Авторизиуйтесь на сайте</span>
-              <div role='button' className={classes.logbtn}>
-                Войти
-              </div>
-              <div role='button' className={classes.registerbtn}>
-                Зарегистрироваться
-              </div>
+              <LoginButton />
+              <RegisterButton />
             </div>
           </div>
           <div className={classes.account}>
@@ -61,12 +55,8 @@ const Navbar: React.FC = () => {
                 <span className={classes.account_lk}>Личный кабиент</span>{' '}
               </div>
               <span className={classes.log_text}>Авторизируйтесь</span>
-              <div role='button' className={classes.logbtn}>
-                Войти
-              </div>
-              <div role='button' className={classes.registerbtn}>
-                Зарегистрироваться
-              </div>
+              <LoginButton />
+              <RegisterButton />
             </div>
           </div>
           <div className={classes.hamburger}>
@@ -74,9 +64,22 @@ const Navbar: React.FC = () => {
           </div>
         </nav>
       </header>
-      <LeftNav />
-      <RightNav />
     </>
+  );
+};
+
+const LoginButton: React.FC = () => {
+  return (
+    <div role='button' className={classes.logbtn}>
+      Войти
+    </div>
+  );
+};
+const RegisterButton: React.FC = () => {
+  return (
+    <div role='button' className={classes.registerbtn}>
+      Зарегистрироваться
+    </div>
   );
 };
 export { Navbar };
