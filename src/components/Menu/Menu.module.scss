@@ -1,1 +1,254 @@
 @import '../../App.scss';
+.menu_container {
+  padding-left: 110px;
+  padding-right: 420px;
+  font-family: $font-family;
+}
+.menu_header {
+  margin-top: 40px;
+  .menu_header_title {
+    font-size: 2.9vw;
+    line-height: 1.14;
+  }
+  .menu_header_small {
+    margin-top: 16px;
+    max-width: 600px;
+    color: rgba(0, 0, 0, 0.4);
+    line-height: 1.33;
+  }
+}
+.row {
+  max-width: 100%;
+}
+
+.row_header {
+  padding-top: 84px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 88px;
+  margin-bottom: 44px;
+  .row_header_left {
+    font-size: 1.66vw;
+    line-height: 1.25;
+    position: relative;
+    z-index: 3;
+  }
+  .row_header_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.row_button {
+  height: 40px;
+  border-radius: 20px;
+  background-color: #fff;
+  color: $orange-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  padding: 0 16px;
+  cursor: pointer;
+  border: 1px solid $orange-color;
+  margin-left: 32px;
+  transition: 0.3s ease;
+}
+.row_button:hover {
+  color: #fff;
+  background: $orange-color;
+}
+.row_button:focus {
+  outline: none;
+}
+.row_items {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+}
+.item {
+  padding-bottom: 24px;
+  margin-right: 32px;
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
+  position: relative;
+  z-index: 0;
+  border-radius: 4px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 280px;
+}
+.item_img {
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-width: 270px;
+  }
+}
+.item_title {
+  font-size: 1.25vw;
+  line-height: 1.33;
+  margin-top: 12px;
+}
+.item_small {
+  margin-top: 12px;
+  transition: 0.3s ease;
+  text-transform: lowercase;
+  flex: 1;
+  font-size: 14px;
+  span {
+    color: $orange-color;
+  }
+}
+.item_buy {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.price {
+  margin-left: 16px;
+  font-size: 1.25vw;
+}
+.buy_button_button {
+  width: 92px;
+  height: 40px;
+  border-radius: 20px;
+  border: none;
+  background-color: #84c502;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  line-height: 1;
+  text-align: center;
+}
+.buy_button_button:focus {
+  outline: none;
+}
+@media only screen and (max-width: 1550px) {
+  .menu_container {
+    padding-right: 336px;
+    padding-left: 68px;
+  }
+  .menu_header {
+    padding: 0 40px;
+  }
+  .row {
+    padding: 0 40px;
+  }
+  .row_header {
+    align-items: center;
+    padding-right: 40px;
+    padding-top: 32px;
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .price {
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 1240px) {
+  .menu_container {
+    padding-right: 0;
+  }
+  .menu_header_title {
+    font-size: 32px;
+  }
+  .row_header_left {
+    font-size: 20px;
+    z-index: 1;
+  }
+  .row_items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .menu_container {
+    padding-left: 0;
+  }
+  .menu_header_title {
+    font-size: 24px;
+  }
+  .menu_header_small {
+    font-size: 14px;
+  }
+  .item_title {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .row_button {
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .menu_header {
+    padding: 0 16px;
+  }
+  .row {
+    padding: 0 16px;
+  }
+  .row_header {
+    padding-right: 16px;
+  }
+
+  .item_title {
+    font-size: 16px;
+    margin-top: 12px;
+    line-height: 1.25;
+    position: relative;
+    z-index: 1;
+  }
+  .item_small {
+    line-height: 1.1;
+    max-height: 68px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .price {
+    order: 1;
+    margin-left: 0;
+  }
+  .buy_button_button {
+    order: 2;
+    width: 100%;
+    margin-top: 4px;
+    min-height: 40px;
+    max-width: 120px;
+  }
+}
+@media only screen and(max-width:540px) {
+  .row_items {
+    grid-template-columns: 1fr;
+  }
+  .item {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+@media only screen and(max-width: 320px) {
+  .menu_header_small {
+    font-size: 12px;
+  }
+  .row_button {
+    margin-left: 16px;
+  }
+
+  .item_small {
+    line-height: 1.2;
+    margin-top: 8px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.64);
+  }
+}

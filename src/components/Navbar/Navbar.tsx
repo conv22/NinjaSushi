@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             <div className={classes.account_wrapper}>
               <div className={classes.account_title}>
                 <img src={people} className={classes.icon} alt='' />
-                <span className={classes.account_lk}>Личный кабиент</span>{' '}
+                <span className={classes.account_lk}>Личный кабиент</span>
               </div>
               <span className={classes.log_text}>Авторизируйтесь</span>
               <LoginButton />

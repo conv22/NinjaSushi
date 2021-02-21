@@ -5,9 +5,9 @@ import './App.scss';
 import { MainPage } from './Pages/MainPage';
 
 const App: React.FC = () => {
-  useEffect(() => {
-    auth.onAuthStateChanged(userAuth => console.log(userAuth));
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged(userAuth => console.log(userAuth));
+  // }, []);
   return (
     <>
       <Navbar />

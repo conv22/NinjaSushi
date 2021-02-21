@@ -1,3 +1,4 @@
+import { DocumentReference } from '@firebase/firestore-types';
 export const LOAD_MENU = 'LOAD_MENU';
 
 export type MenuState = {
@@ -7,13 +8,16 @@ export type MenuState = {
 export type Item = {
   title: string;
   weight: number;
-  composition: Ingridient[];
+  ingridients?: DocumentReference['path'];
   price: number;
   category: string;
+  image: string;
+  description: string;
 };
 
 export type Ingridient = {
   title: string;
+  image: string;
 };
 
 type LoadMenuAction = {
