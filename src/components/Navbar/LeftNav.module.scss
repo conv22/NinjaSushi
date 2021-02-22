@@ -20,7 +20,7 @@
 .aside:hover {
   width: 220px;
 }
-.aside:hover > .aside_link > .link_title {
+.aside:hover > a > .aside_link > .link_title {
   opacity: 1;
 }
 .aside .aside_link:hover {

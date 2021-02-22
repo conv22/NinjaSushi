@@ -6,17 +6,17 @@ import burr from '../../assets/images/icons/sidenav/burr.svg';
 import drinks from '../../assets/images/icons/sidenav/drinks.svg';
 import sia from '../../assets/images/icons/sidenav/sia.svg';
 import classes from './LeftNav.module.scss';
+import { Link } from 'react-router-dom';
 
 const LeftNav: React.FC = () => {
   return (
     <aside>
       <div className={classes.aside}>
-        <Link title={'Роллы'} img={roll} />
-        <Link title={'Суши'} img={sushi} />
-        <Link title={'Сеты'} img={set} />
-        <Link title={'Закуски'} img={burr} />
-        <Link title={'Напитки'} img={drinks} />
-        <Link title={'Соусы'} img={sia} />
+        <LinkComponent title={'Роллы'} url={'rolls'} img={roll} />
+        <LinkComponent title={'Суши'} url={'sushi'} img={sushi} />
+        <LinkComponent title={'Сеты'} url={'sets'} img={set} />
+        <LinkComponent title={'Напитки'} url={'drinks'} img={drinks} />
+        <LinkComponent title={'Соусы'} url={'sauces'} img={sia} />
       </div>
     </aside>
   );
@@ -25,14 +25,17 @@ const LeftNav: React.FC = () => {
 type LinkProps = {
   title: string;
   img: string;
+  url: string;
 };
 
-const Link: React.FC<LinkProps> = ({ title, img }) => {
+const LinkComponent: React.FC<LinkProps> = ({ title, img, url }) => {
   return (
-    <div className={classes.aside_link}>
-      <img src={img} alt='' />
-      <span className={classes.link_title}>{title}</span>
-    </div>
+    <Link to={`/${url}`}>
+      <div className={classes.aside_link}>
+        <img src={img} alt='' />
+        <span className={classes.link_title}>{title}</span>
+      </div>
+    </Link>
   );
 };
 

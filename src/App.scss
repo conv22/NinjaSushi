@@ -4,3 +4,27 @@ $font-family: 'Lato', sans-serif;
 * {
   box-sizing: border-box;
 }
+
+%container {
+  padding-left: 110px;
+  padding-right: 420px;
+  font-family: $font-family;
+}
+
+@media screen and (max-width: 1550px) {
+  %container {
+    padding-right: 336px;
+    padding-left: 68px;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  %container {
+    padding-right: 0;
+  }
+}
+@media screen and (max-width: 1024px) {
+  %container {
+    padding-left: 0;
+  }
+}

@@ -1,21 +1,19 @@
 @import '../../App.scss';
 .menu_container {
-  padding-left: 110px;
-  padding-right: 420px;
-  font-family: $font-family;
+  @extend %container;
 }
 .menu_header {
   margin-top: 40px;
-  .menu_header_title {
-    font-size: 2.9vw;
-    line-height: 1.14;
-  }
-  .menu_header_small {
-    margin-top: 16px;
-    max-width: 600px;
-    color: rgba(0, 0, 0, 0.4);
-    line-height: 1.33;
-  }
+}
+.menu_header_title {
+  font-size: 2.9vw;
+  line-height: 1.14;
+}
+.menu_header_small {
+  margin-top: 16px;
+  max-width: 600px;
+  color: rgba(0, 0, 0, 0.4);
+  line-height: 1.33;
 }
 .row {
   max-width: 100%;
@@ -27,17 +25,17 @@
   justify-content: space-between;
   padding-right: 88px;
   margin-bottom: 44px;
-  .row_header_left {
-    font-size: 1.66vw;
-    line-height: 1.25;
-    position: relative;
-    z-index: 3;
-  }
-  .row_header_right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+}
+.row_header_left {
+  font-size: 1.66vw;
+  line-height: 1.25;
+  position: relative;
+  z-index: 3;
+}
+.row_header_right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .row_button {
   height: 40px;
@@ -135,10 +133,6 @@
   outline: none;
 }
 @media only screen and (max-width: 1550px) {
-  .menu_container {
-    padding-right: 336px;
-    padding-left: 68px;
-  }
   .menu_header {
     padding: 0 40px;
   }
@@ -157,9 +151,6 @@
   }
 }
 @media only screen and (max-width: 1240px) {
-  .menu_container {
-    padding-right: 0;
-  }
   .menu_header_title {
     font-size: 32px;
   }
@@ -172,9 +163,6 @@
   }
 }
 @media only screen and (max-width: 1024px) {
-  .menu_container {
-    padding-left: 0;
-  }
   .menu_header_title {
     font-size: 24px;
   }
