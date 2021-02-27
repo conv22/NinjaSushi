@@ -12,10 +12,10 @@ const LeftNav: React.FC = () => {
   return (
     <aside>
       <div className={classes.aside}>
-        <LinkComponent title={'Роллы'} url={'rolls'} img={roll} />
+        <LinkComponent title={'Роллы'} url={'roll'} img={roll} />
         <LinkComponent title={'Суши'} url={'sushi'} img={sushi} />
-        <LinkComponent title={'Сеты'} url={'sets'} img={set} />
-        <LinkComponent title={'Напитки'} url={'drinks'} img={drinks} />
+        <LinkComponent title={'Сеты'} url={'set'} img={set} />
+        <LinkComponent title={'Напитки'} url={'drink'} img={drinks} />
         <LinkComponent title={'Соусы'} url={'sauces'} img={sia} />
       </div>
     </aside>
@@ -30,8 +30,8 @@ type LinkProps = {
 
 const LinkComponent: React.FC<LinkProps> = ({ title, img, url }) => {
   return (
-    <Link to={`/${url}`}>
-      <div className={classes.aside_link}>
+    <Link className={classes.aside_link} to={`/${url}`}>
+      <div className={classes.link_container}>
         <img src={img} alt='' />
         <span className={classes.link_title}>{title}</span>
       </div>

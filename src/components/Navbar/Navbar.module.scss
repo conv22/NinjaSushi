@@ -43,10 +43,18 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
     transition: color 0.2s ease;
   }
 }
-.link:hover {
+.link_link {
+  display: block;
+  color: $main-color;
+  text-decoration: none;
+}
+
+.link_link.active,
+.link_link:hover {
   color: $orange-color;
   transition: 0.2s;
 }
+
 .link::after {
   content: '';
   position: absolute;
@@ -68,28 +76,6 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   position: relative;
   font-weight: 600;
 }
-.tel {
-  @extend %align-flex;
-  margin-left: 125px;
-  cursor: pointer;
-}
-.tel:hover > .icon {
-  z-index: 999;
-}
-.tel:hover > .tel_wrapper {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
-  transition: 0.3s ease;
-}
-.fav {
-  @extend %align-flex;
-  cursor: text;
-}
-.fav:hover > .fav_wrapper {
-  visibility: visible;
-  opacity: 1;
-}
 .account {
   @extend %align-flex;
   cursor: text;
@@ -100,32 +86,6 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
 }
 
 //wrappers
-
-.tel_wrapper {
-  background: #fff;
-  box-shadow: $wrapper-shadow;
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  left: -24px;
-  position: absolute;
-  padding-top: 7px;
-  padding-right: 24px;
-  padding-bottom: 24px;
-  width: 256px;
-  z-index: 2;
-  opacity: 0;
-  visibility: hidden;
-}
-.tel_phone {
-  margin-left: 72px;
-  line-height: 24px;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.64);
-  text-decoration: none;
-}
 
 .small {
   font-size: 14px;
@@ -139,31 +99,6 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   line-height: 1.43;
 }
 
-.fav_wrapper {
-  box-shadow: $wrapper-shadow;
-  background: #fff;
-  position: absolute;
-  top: 0;
-  left: -24px;
-  width: 228px;
-  padding: 24px;
-  padding-top: 28px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.2s ease;
-}
-.fav_title {
-  color: $main-color;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  img {
-    margin-right: 12px;
-  }
-}
 .notes {
   border-radius: 4px;
   background-color: rgba(249, 187, 0, 0.12);
@@ -198,41 +133,23 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   font-size: 14px;
   color: rgba(0, 0, 0, 0.4);
 }
-.registerbtn {
-  text-align: center;
-  color: $orange-color;
+.register {
+  display: flex;
+  align-items: center;
+}
+.register_button {
+  color: rgba(0, 0, 0, 0.64);
   font-size: 14px;
-  line-height: 1.43;
-  margin-top: 16px;
+  font-weight: 600;
+  border: none;
+  background: none;
   cursor: pointer;
 }
-
-.account_wrapper {
-  background: #fff;
-  box-shadow: $wrapper-shadow;
-  border-radius: 4px;
-  width: calc(100% + 48px);
-  padding: 24px;
-  padding-top: 27px;
-  position: absolute;
-  top: 0;
-  left: -24px;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.2s;
+.register_button:hover {
+  color: $orange-color;
 }
-.account_title {
-  color: $main-color;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  .account_lk {
-    white-space: nowrap;
-  }
+.register_button:focus {
+  outline: none;
 }
 //icons
 
@@ -242,44 +159,6 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
 
 .title {
   color: $main-color;
-}
-.hamburger {
-  width: 32px;
-  height: 32px;
-  position: fixed;
-  right: 16px;
-  top: 12px;
-  transition: 0.3s ease;
-  cursor: pointer;
-  display: none;
-  span {
-    position: absolute;
-    width: 24px;
-    height: 2px;
-    background-color: #000;
-    margin: auto;
-    left: 0;
-    right: 0;
-    transition: 0.2s;
-  }
-  span:nth-of-type(1) {
-    top: 6px;
-  }
-  span:nth-of-type(2) {
-    top: 0px;
-    bottom: 0;
-  }
-  span:nth-of-type(3) {
-    bottom: 6px;
-  }
-  span:nth-of-type(4) {
-    opacity: 0;
-    visibility: hidden;
-    height: 24px;
-    width: 2px;
-    top: 0;
-    bottom: 0;
-  }
 }
 
 @media screen and (max-width: 1500px) {
@@ -305,13 +184,6 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   .title {
     display: none;
   }
-  .tel {
-    margin-left: auto;
-    margin-right: 48px;
-  }
-  .fav {
-    margin-right: 48px;
-  }
 }
 @media screen and (max-width: 1200px) {
   .icon {
@@ -328,9 +200,12 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
     width: 160px;
     height: 35px;
   }
-  .links_list {
-    display: none;
+  .register_button {
+    font-size: 14px;
   }
+  // .links_list {
+  //   display: none;
+  // }
 }
 @media screen and (max-width: 650px) {
   .ninja_logo {
@@ -339,5 +214,8 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
     background: url('../../assets/images/icons/mobile-logo.svg') center
       no-repeat;
     background-size: contain;
+  }
+  .register_button {
+    font-size: 12px;
   }
 }

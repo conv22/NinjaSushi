@@ -4,6 +4,7 @@ import { LoadMenuThunk } from '../redux/menu/actions';
 import { Slider } from '../components/Slider';
 import { Menu } from '../components/Menu/Menu';
 import classes from './MainPage.module.scss';
+import AuthModal from '../components/Auth/AuthModal';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const MainPage: React.FC = () => {
     <>
       <Slider />
       <Menu />
+      <AuthModal />
     </>
   );
 };

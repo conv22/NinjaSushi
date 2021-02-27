@@ -42,4 +42,4 @@ const MenuReducer = (
   }
 };
 
-export { MenuReducer };
+export default MenuReducer;

@@ -10,12 +10,13 @@ import {
 } from './types';
 
 export const LoadMenuThunk = (): AppThunk => async (dispatch, getState) => {
-  if (getState().menu.items.length !== 0) {
+  let menuItems = getState().menu.items;
+  if (menuItems.length > 0) {
+    dispatch(LoadMenuAction(menuItems));
+  } else {
     let items: Array<Item> = await api.getAllMenu();
     dispatch(LoadMenuAction(items));
   }
-  let items: Array<Item> = await api.getAllMenu();
-  dispatch(LoadMenuAction(items));
 };
 
 export const LoadItemThunk = (id: string): AppThunk => async (
@@ -36,7 +37,7 @@ export const LoadCategoryThunk = (title: string): AppThunk => async (
   getState
 ) => {
   let selectedCategory = getState().menu.items.filter(
-    item => item.category !== title
+    item => item.category === title
   );
   if (selectedCategory.length > 0) {
     dispatch(LoadCategoryAction(selectedCategory));

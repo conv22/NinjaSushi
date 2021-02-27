@@ -1,0 +1,152 @@
+@import '../../App.scss';
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  font-family: $font-family;
+}
+.modal {
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  max-width: 448px;
+  padding: 48px;
+  border-radius: 4px;
+}
+.h3 {
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+.social {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 8px 0 24px 0;
+  span {
+    width: 100%;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    margin-bottom: 8px;
+  }
+}
+.social_button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  button {
+    width: calc(50% - 16px);
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 2px rgba(0, 0, 0, 0.16);
+    border-radius: 24px;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  button:hover {
+    border: solid 2px $orange-color;
+  }
+  button:focus {
+    outline: none;
+  }
+}
+.input_group {
+  margin-bottom: 12px;
+}
+.input_label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+.input_input {
+  width: 100%;
+  height: 40px;
+  padding-left: 12px;
+  background-color: #fff;
+  border-radius: 2px;
+  border: solid 1px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+.input_input:focus {
+  border: solid 1px $orange-color;
+  outline: none;
+}
+.input_orange {
+  color: $orange-color;
+}
+.login_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+}
+.login_btn {
+  padding: 14px 20px;
+  border-radius: 24px;
+  border: none;
+  background-color: #ee6344;
+  color: #fff;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  letter-spacing: 0.6px;
+  transition: 0.3s;
+  width: auto;
+}
+.form_end {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.48);
+  margin-top: 16px;
+}
+.form_end_register {
+  margin-left: 5px;
+  color: $orange-color;
+  cursor: pointer;
+}
+.close {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  transform: rotate(45deg);
+  cursor: pointer;
+  span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.24);
+    transition: 0.3s ease;
+  }
+  span:nth-of-type(1) {
+    width: 28px;
+    height: 2px;
+  }
+  span:nth-of-type(2) {
+    height: 28px;
+    width: 2px;
+  }
+}
+.close:hover > span {
+  background-color: rgba(0, 0, 0, 1);
+}
+@media screen and (max-width: 380px) {
+  .modal {
+    padding: 32px;
+  }
+}
