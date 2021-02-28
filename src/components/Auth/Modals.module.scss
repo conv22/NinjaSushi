@@ -104,6 +104,9 @@
   transition: 0.3s;
   width: auto;
 }
+.login_btn:disabled {
+  background: rgb(100, 99, 99);
+}
 .form_end {
   text-align: center;
   color: rgba(0, 0, 0, 0.48);
@@ -144,6 +147,26 @@
 }
 .close:hover > span {
   background-color: rgba(0, 0, 0, 1);
+}
+.error {
+  border: 1px solid;
+  margin: 10px 0 20px 0;
+  padding: 15px 10px 15px 50px;
+  max-height: 100px;
+  display: flex;
+  align-items: center;
+  color: #d63301;
+  background-color: #ffccba;
+  overflow: hidden;
+  .error_code {
+    margin-right: 5px;
+    color: #e23500;
+  }
+}
+@media screen and (max-width: 600px) {
+  .error {
+    max-height: 80x;
+  }
 }
 @media screen and (max-width: 380px) {
   .modal {

@@ -1,15 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { MenuRow } from './MenuRow';
 import classes from './Menu.module.scss';
-import roll from '../../assets/101-1.png';
 import { RootState } from '../../redux/reducers/RootReducer';
+import { loadMenuThunkAction } from '../../redux/menu/actions';
 
 const Menu: React.FC = () => {
-  const items = useSelector((state: RootState) => state.menu.items);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadMenuThunkAction());
+  }, [dispatch]);
+  const items = useSelector((state: RootState) => state.menu.menu);
+
+  if (items === null) {
+    return <h1>hello</h1>;
+  }
+
   return (
     <section className={classes.menu_container}>
       <MenuHeader />
+
       <MenuRow
         title={'Роллы'}
         items={items.filter(item => item.category === 'roll')}

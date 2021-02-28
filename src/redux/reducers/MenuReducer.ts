@@ -1,40 +1,40 @@
 import {
   LOAD_MENU,
-  LOAD_ITEM,
-  LOAD_CATEGORY,
-  MenuActionTypes,
-  MenuState,
+  SELECT_CATEGORY,
+  SELECT_ITEM,
+  menuActionTypes,
+  initialStateType,
 } from '../menu/types';
 
-const initialState: MenuState = {
-  items: [],
-  selectedCategory: [],
+const initialState: initialStateType = {
+  menu: null,
   selectedItem: null,
+  selectedCategory: null,
+  loading: false,
+  error: null,
 };
 
 const MenuReducer = (
   state = initialState,
-  action: MenuActionTypes
-): MenuState => {
+  action: menuActionTypes
+): initialStateType => {
   switch (action.type) {
     case LOAD_MENU: {
       return {
-        items: [...state.items, ...action.payload],
-        selectedCategory: [],
-        selectedItem: null,
+        ...state,
+        menu: action.payload,
       };
     }
-    case LOAD_ITEM: {
+    case SELECT_ITEM: {
       return {
         ...state,
         selectedItem: action.payload,
       };
     }
-    case LOAD_CATEGORY: {
+    case SELECT_CATEGORY: {
       return {
         ...state,
-        selectedCategory: [...action.payload],
-        selectedItem: null,
+        selectedCategory: action.payload,
       };
     }
     default:

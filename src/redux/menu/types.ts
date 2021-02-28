@@ -1,44 +1,47 @@
 import { DocumentReference } from '@firebase/firestore-types';
-export const LOAD_MENU = 'LOAD_MENU';
-export const LOAD_ITEM = 'LOAD_ITEM';
-export const LOAD_CATEGORY = 'LOAD_CATEGORY';
 
-export type MenuState = {
-  items: Item[] | [];
-  selectedItem: Item | null;
-  selectedCategory: Item[] | [];
+export const LOAD_MENU = 'LOAD_MENU';
+export const SELECT_ITEM = 'SELECT_ITEM';
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
+
+export type initialStateType = {
+  menu: menuItem[] | null;
+  selectedItem: menuItem | null;
+  selectedCategory: menuItem[] | null;
+  loading: boolean;
+  error: null;
+};
+export type ingridientType = {
+  image: string;
+  title: string;
 };
 
-export type Item = {
+export type menuItem = {
+  id: string;
   title: string;
-  weight: number;
-  ingridients?: DocumentReference['path'];
+  description: string;
   price: number;
+  weight: number;
+  ingridients?: DocumentReference[] | ingridientType[];
   category: string;
   image: string;
-  description: string;
-  id: string;
 };
 
-export type Ingridient = {
-  title: string;
-  image: string;
-};
-
-type LoadMenuAction = {
+export type loadMenuType = {
   type: typeof LOAD_MENU;
-  payload: Item[];
-};
-type LoadItemAction = {
-  type: typeof LOAD_ITEM;
-  payload: Item;
+  payload: menuItem[];
 };
 
-type LoadCategoryAction = {
-  type: typeof LOAD_CATEGORY;
-  payload: Item[];
+export type selectMenuItem = {
+  type: typeof SELECT_ITEM;
+  payload: menuItem;
 };
-export type MenuActionTypes =
-  | LoadMenuAction
-  | LoadItemAction
-  | LoadCategoryAction;
+
+export type selectMenuCategory = {
+  type: typeof SELECT_CATEGORY;
+  payload: menuItem[];
+};
+export type menuActionTypes =
+  | selectMenuCategory
+  | selectMenuItem
+  | loadMenuType;

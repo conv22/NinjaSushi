@@ -1,18 +1,12 @@
 import React from 'react';
+import { menuItem } from '../../redux/menu/types';
 import classes from './Menu.module.scss';
-import { Item } from '../../redux/menu/types';
-import { useDispatch } from 'react-redux';
-import { LoadItemThunk } from '../../redux/menu/actions';
 
 type MenuRowProps = {
-  items: Item[];
+  items: menuItem[];
   title: string;
 };
 const MenuRow: React.FC<MenuRowProps> = ({ title, items }) => {
-  const dispatch = useDispatch();
-  const linkHandler = (id: string) => {
-    dispatch(LoadItemThunk(id));
-  };
   return (
     <div className={classes.row}>
       <div className={classes.row_header}>
@@ -22,7 +16,7 @@ const MenuRow: React.FC<MenuRowProps> = ({ title, items }) => {
         </div>
       </div>
       <div className={classes.row_items}>
-        {items.map(item => (
+        {items.map((item: any) => (
           <RowItem
             key={item.id}
             id={item.id}
@@ -31,7 +25,6 @@ const MenuRow: React.FC<MenuRowProps> = ({ title, items }) => {
             price={item.price}
             title={item.title}
             weight={item.weight}
-            linkHandler={linkHandler}
           />
         ))}
       </div>
@@ -46,7 +39,6 @@ type RowItemProps = {
   description: string;
   price: number;
   id: string;
-  linkHandler(id: string): void;
 };
 const RowItem: React.FC<RowItemProps> = ({
   image,
@@ -55,11 +47,10 @@ const RowItem: React.FC<RowItemProps> = ({
   description,
   price,
   id,
-  linkHandler,
 }) => {
   return (
     <div className={classes.item}>
-      <div className={classes.item_img} onClick={() => linkHandler(id)}>
+      <div className={classes.item_img}>
         <img src={image} alt='' />
       </div>
       <div className={classes.item_description}>

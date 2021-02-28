@@ -1,69 +1,57 @@
-import { AppThunk } from '../store';
-import { api } from '../../api/api';
 import {
   LOAD_MENU,
-  LOAD_ITEM,
-  Item,
-  Ingridient,
-  MenuActionTypes,
-  LOAD_CATEGORY,
+  loadMenuType,
+  menuItem,
+  selectMenuItem,
+  SELECT_ITEM,
 } from './types';
+import { AppThunk } from '../store';
+import { db } from '../../firebase';
 
-export const LoadMenuThunk = (): AppThunk => async (dispatch, getState) => {
-  let menuItems = getState().menu.items;
-  if (menuItems.length > 0) {
-    dispatch(LoadMenuAction(menuItems));
-  } else {
-    let items: Array<Item> = await api.getAllMenu();
-    dispatch(LoadMenuAction(items));
-  }
-};
-
-export const LoadItemThunk = (id: string): AppThunk => async (
+export const loadMenuThunkAction = (): AppThunk => async (
   dispatch,
   getState
 ) => {
-  let selectedItem = getState().menu.items.find(item => item.id === id);
-  if (selectedItem) {
-    dispatch(LoadItemAction(selectedItem));
-  } else {
-    let item: Item = await api.getItem(id);
-    dispatch(LoadItemAction(item));
+  if (getState().menu.menu === null) {
+    let items: menuItem[] = [];
+    let collection = await db.collection('menu').get();
+    collection.forEach(querySnapshot => {
+      let item;
+      item = querySnapshot.data() as menuItem;
+      item.id = querySnapshot.id;
+      items.push(item);
+    });
+    dispatch(loadMenuAction(items));
   }
 };
 
-export const LoadCategoryThunk = (title: string): AppThunk => async (
+export const loadMenuItemThunkAction = (id: string): AppThunk => (
   dispatch,
   getState
 ) => {
-  let selectedCategory = getState().menu.items.filter(
-    item => item.category === title
-  );
-  if (selectedCategory.length > 0) {
-    dispatch(LoadCategoryAction(selectedCategory));
+  if (getState().menu.menu !== null) {
+    let item = getState().menu.menu!.find(item => item.id === id);
+    if (item) {
+      dispatch(loadItemAction(item));
+    }
   } else {
-    let items: Array<Item> = await api.getCategory(title);
-    dispatch(LoadCategoryAction(items));
+    dispatch(loadMenuThunkAction());
+    loadMenuItemThunkAction(id);
   }
 };
 
-const LoadMenuAction = (items: Array<Item>): MenuActionTypes => {
+//action creators
+
+const loadMenuAction = (items: menuItem[]): loadMenuType => {
   return {
     type: LOAD_MENU,
     payload: items,
   };
 };
 
-const LoadItemAction = (item: Item): MenuActionTypes => {
+const loadItemAction = (item: menuItem): selectMenuItem => {
   return {
-    type: LOAD_ITEM,
+    type: SELECT_ITEM,
     payload: item,
-  };
-};
-
-const LoadCategoryAction = (items: Array<Item>): MenuActionTypes => {
-  return {
-    type: LOAD_CATEGORY,
-    payload: items,
   };
 };

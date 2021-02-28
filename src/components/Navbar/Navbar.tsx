@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AuthModal from './../Auth/AuthModal';
 import classes from './Navbar.module.scss';
 import people from '../../assets/images/icons/people.svg';
 import { NavLink } from 'react-router-dom';
@@ -35,6 +36,7 @@ const Navbar: React.FC = () => {
           </div>
         </nav>
       </header>
+      <AuthModal setModal={setModal} modal={modal} />
     </>
   );
 };
