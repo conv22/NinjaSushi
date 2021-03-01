@@ -2,7 +2,6 @@ import React from 'react';
 import roll from '../../assets/images/icons/sidenav/roll.svg';
 import sushi from '../../assets/images/icons/sidenav/sushi.svg';
 import set from '../../assets/images/icons/sidenav/set.svg';
-import burr from '../../assets/images/icons/sidenav/burr.svg';
 import drinks from '../../assets/images/icons/sidenav/drinks.svg';
 import sia from '../../assets/images/icons/sidenav/sia.svg';
 import classes from './LeftNav.module.scss';

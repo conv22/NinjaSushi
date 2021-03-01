@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { addItemThunkAction } from '../../redux/cart/actions';
 import { menuItem } from '../../redux/menu/types';
 import classes from './Menu.module.scss';
 
@@ -40,7 +42,7 @@ type RowItemProps = {
   price: number;
   id: string;
 };
-const RowItem: React.FC<RowItemProps> = ({
+export const RowItem: React.FC<RowItemProps> = ({
   image,
   title,
   weight,
@@ -48,6 +50,11 @@ const RowItem: React.FC<RowItemProps> = ({
   price,
   id,
 }) => {
+  const dispatch = useDispatch();
+  const addToCard = (id: string) => {
+    dispatch(addItemThunkAction(id));
+  };
+
   return (
     <div className={classes.item}>
       <div className={classes.item_img}>
@@ -61,7 +68,12 @@ const RowItem: React.FC<RowItemProps> = ({
       </div>
       <div className={classes.item_buy}>
         <div className={classes.buy_button}>
-          <button className={classes.buy_button_button}>В корзину</button>
+          <button
+            className={classes.buy_button_button}
+            onClick={() => addToCard(id)}
+          >
+            В корзину
+          </button>
         </div>
         <div className={classes.price}>{price}Р</div>
       </div>

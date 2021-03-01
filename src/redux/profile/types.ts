@@ -9,10 +9,6 @@ export type InitialStateType = {
   loggedIn: boolean;
 };
 
-export type Profile = {
-  email: string;
-};
-
 export type Error = {
   msg: string;
   code: string;

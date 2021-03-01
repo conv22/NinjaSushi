@@ -2,7 +2,6 @@ import { AppThunk } from '../store';
 import {
   LOAD_PROFILE,
   loadProfileAction,
-  Profile,
   logoutProfileAction,
   LOGOUT_PROFILE,
   createProfileError,
@@ -67,6 +66,18 @@ export const loginActionFacebookThunk = (): AppThunk => dispatch => {
     .catch(error => {
       const { code, message } = error;
       dispatch(errorCreator(message, code));
+    });
+};
+
+export const logoutActionThunk = (): AppThunk => dispatch => {
+  auth
+    .signOut()
+    .then(() => {
+      dispatch(logoutAction());
+    })
+    .catch(error => {
+      const { msg, code } = error;
+      dispatch(errorCreator(msg, code));
     });
 };
 

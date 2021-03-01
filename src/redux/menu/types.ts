@@ -12,6 +12,7 @@ export type initialStateType = {
   error: null;
 };
 export type ingridientType = {
+  id: string;
   image: string;
   title: string;
 };

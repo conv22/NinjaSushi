@@ -4,40 +4,50 @@ import {
   menuItem,
   selectMenuItem,
   SELECT_ITEM,
+  selectMenuCategory,
+  SELECT_CATEGORY,
+  ingridientType,
 } from './types';
 import { AppThunk } from '../store';
 import { db } from '../../firebase';
 
-export const loadMenuThunkAction = (): AppThunk => async (
-  dispatch,
-  getState
-) => {
+export const loadMenuThunkAction = (): AppThunk => (dispatch, getState) => {
   if (getState().menu.menu === null) {
     let items: menuItem[] = [];
-    let collection = await db.collection('menu').get();
-    collection.forEach(querySnapshot => {
-      let item;
-      item = querySnapshot.data() as menuItem;
-      item.id = querySnapshot.id;
-      items.push(item);
-    });
-    dispatch(loadMenuAction(items));
+    db.collection('menu')
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          let item = doc.data() as menuItem;
+          item.id = doc.id;
+          items.push(item);
+        });
+      })
+      .then(() => dispatch(loadMenuAction(items)))
+      .catch(err => {
+        alert(err);
+      });
   }
 };
 
-export const loadMenuItemThunkAction = (id: string): AppThunk => (
-  dispatch,
-  getState
-) => {
-  if (getState().menu.menu !== null) {
-    let item = getState().menu.menu!.find(item => item.id === id);
-    if (item) {
-      dispatch(loadItemAction(item));
-    }
-  } else {
-    dispatch(loadMenuThunkAction());
-    loadMenuItemThunkAction(id);
-  }
+export const loadMenuCategoryThunkAction = (
+  category: string
+): AppThunk => dispatch => {
+  let items: menuItem[] = [];
+  db.collection('menu')
+    .where('category', '==', category)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        let item = doc.data() as menuItem;
+        item.id = doc.id;
+        items.push(item);
+      });
+    })
+    .then(() => dispatch(loadCategoryAction(items)))
+    .catch(error => {
+      console.log('Error getting documents: ', error);
+    });
 };
 
 //action creators
@@ -53,5 +63,12 @@ const loadItemAction = (item: menuItem): selectMenuItem => {
   return {
     type: SELECT_ITEM,
     payload: item,
+  };
+};
+
+const loadCategoryAction = (items: menuItem[]): selectMenuCategory => {
+  return {
+    type: SELECT_CATEGORY,
+    payload: items,
   };
 };
