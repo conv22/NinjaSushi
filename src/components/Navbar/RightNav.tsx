@@ -5,6 +5,7 @@ import {
   deleteItemAction,
   createOrderActionThunk,
 } from '../../redux/cart/actions';
+import CartLoader from '../Loaders/CartLoader';
 import { RootState } from '../../redux/reducers/RootReducer';
 import { CartItem } from '../../redux/cart/types';
 import Cart from '../../assets/images/icons/cart.svg';
@@ -12,10 +13,17 @@ import classes from './RightNav.module.scss';
 
 const RightNav: React.FC = () => {
   const items = useSelector((state: RootState) => state.cart.items);
+  const loading = useSelector((state: RootState) => state.loading.cart);
+  if (loading) {
+    return (
+      <div className={classes.aside}>
+        <CartLoader />
+      </div>
+    );
+  }
 
   return (
     <aside>
-      {' '}
       <div className={classes.aside}>
         {items.length > 0 ? <ItemList items={items} /> : <Empty />}
       </div>

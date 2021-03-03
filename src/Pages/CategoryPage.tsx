@@ -4,6 +4,13 @@ import { loadMenuCategoryThunkAction } from '../redux/menu/actions';
 import { RouteComponentProps } from 'react-router-dom';
 import { RootState } from '../redux/reducers/RootReducer';
 import { RowItem } from '../components/Menu/MenuRow';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faArrowDown,
+  faArrowUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
+
 import classes from './CategoryPage.module.scss';
 
 type RouteParams = {
@@ -55,8 +62,42 @@ const SortComponent: React.FC = () => {
     <div className={classes.sort} onClick={() => setOpen(!open)}>
       <div className={classes.small}>Сортировка по</div>
       <div className={classes.select}>
-        <div className={classes.select_name}></div>
-        <div className={classes.select_dropdown}></div>
+        <div className={classes.select_name}>
+          Цена{' '}
+          <span className={classes.select_name_icon}>
+            <FontAwesomeIcon icon={faChevronDown} />
+          </span>
+        </div>
+        <div className={classes.select_dropdown}>
+          <div className={classes.select_option}>
+            <span className={classes.option_icon}>
+              <FontAwesomeIcon icon={faArrowUp} />
+            </span>
+            Цена
+          </div>
+          <div className={classes.select_option}>
+            <span className={classes.option_icon}>
+              <FontAwesomeIcon icon={faArrowDown} />
+            </span>
+            Цена
+          </div>
+          <div className={classes.select_option}>
+            <span className={classes.option_icon}></span>
+            Название
+          </div>
+          <div className={classes.select_option}>
+            <span className={classes.option_icon}>
+              <FontAwesomeIcon icon={faArrowUp} />
+            </span>
+            Вес
+          </div>
+          <div className={classes.select_option}>
+            <span className={classes.option_icon}>
+              <FontAwesomeIcon icon={faArrowDown} />
+            </span>
+            Вес
+          </div>
+        </div>
       </div>
     </div>
   );

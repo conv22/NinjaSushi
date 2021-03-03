@@ -8,11 +8,20 @@ import {
   ingridientType,
   menuItem,
 } from './types';
+import {
+  setLoadingAction,
+  unLoadingAction,
+  LOADING_MAIN,
+  UNLOAD_MAIN,
+  LOADING_PRODUCT,
+  UNLOAD_PRODUCT,
+} from '../reducers/LoadingReducer';
 import { AppThunk } from '../store';
 import { db } from '../../firebase';
 
 export const loadMenuThunkAction = (): AppThunk => (dispatch, getState) => {
   if (getState().menu.menu === null) {
+    dispatch(setLoadingAction(LOADING_MAIN));
     let items: menuItem[] = [];
     db.collection('menu')
       .get()
@@ -23,8 +32,12 @@ export const loadMenuThunkAction = (): AppThunk => (dispatch, getState) => {
           items.push(item);
         });
       })
-      .then(() => dispatch(loadMenuAction(items)))
+      .then(() => {
+        dispatch(unLoadingAction(UNLOAD_MAIN));
+        dispatch(loadMenuAction(items));
+      })
       .catch(err => {
+        dispatch(unLoadingAction(UNLOAD_MAIN));
         alert(err);
       });
   }
@@ -33,6 +46,7 @@ export const loadMenuThunkAction = (): AppThunk => (dispatch, getState) => {
 export const loadMenuCategoryThunkAction = (
   category: string
 ): AppThunk => dispatch => {
+  dispatch(setLoadingAction(LOADING_PRODUCT));
   let items: menuItem[] = [];
   db.collection('menu')
     .where('category', '==', category)
@@ -44,13 +58,18 @@ export const loadMenuCategoryThunkAction = (
         items.push(item);
       });
     })
-    .then(() => dispatch(loadCategoryAction(items)))
+    .then(() => {
+      dispatch(unLoadingAction(UNLOAD_PRODUCT));
+      dispatch(loadCategoryAction(items));
+    })
     .catch(error => {
-      console.log('Error getting documents: ', error);
+      dispatch(unLoadingAction(UNLOAD_PRODUCT));
+      alert(error);
     });
 };
 
 export const loadMenuItemThunkAction = (id: string): AppThunk => dispatch => {
+  dispatch(setLoadingAction(LOADING_PRODUCT));
   let item: menuItem;
   let ingridients: ingridientType[] = [];
   db.collection('menu')

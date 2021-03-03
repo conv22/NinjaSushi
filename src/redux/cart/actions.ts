@@ -9,6 +9,12 @@ import {
   CartItem,
   createOrderActionType,
 } from './types';
+import {
+  LOADING_CART,
+  UNLOAD_CART,
+  setLoadingAction,
+  unLoadingAction,
+} from '../reducers/LoadingReducer';
 import { db } from '../../firebase';
 import { showPopUpAction } from '../reducers/PopUpReducer';
 import { removeLs } from '../../utils/localStorageCart';
@@ -18,9 +24,11 @@ export const addItemThunkAction = (id: string): AppThunk => (
   dispatch,
   getState
 ) => {
+  dispatch(setLoadingAction(LOADING_CART));
   const items = getState().cart.items;
   const findItem = items.find(x => x.id === id);
   if (findItem) {
+    dispatch(unLoadingAction(UNLOAD_CART));
     dispatch(showPopUpAction('success', 'Товар добавлен в корзину'));
     dispatch(changeItemAction(findItem.id, findItem.quantity + 1));
   } else {
@@ -34,10 +42,12 @@ export const addItemThunkAction = (id: string): AppThunk => (
         item.quantity = 1;
       })
       .then(() => {
+        dispatch(unLoadingAction(UNLOAD_CART));
         dispatch(showPopUpAction('success', 'Товар добавлен в корзину'));
         dispatch(addItemAction(item));
       })
       .catch(() => {
+        dispatch(unLoadingAction(UNLOAD_CART));
         dispatch(showPopUpAction('error', 'Что-то пошло не так'));
       });
   }
@@ -47,6 +57,7 @@ export const createOrderActionThunk = (address: string): AppThunk => (
   dispatch,
   getState
 ) => {
+  dispatch(setLoadingAction(LOADING_CART));
   const items = getState().cart.items;
   let newItems = items.map(item => item.title);
   db.collection('orders')
@@ -55,11 +66,13 @@ export const createOrderActionThunk = (address: string): AppThunk => (
       newItems,
     })
     .then(() => {
+      dispatch(unLoadingAction(UNLOAD_CART));
       dispatch(showPopUpAction('success', 'Товар добавлен в корзину'));
       removeLs();
       dispatch(createOrderAction());
     })
     .catch(() => {
+      dispatch(unLoadingAction(UNLOAD_CART));
       dispatch(showPopUpAction('error', 'Что-то пошло не так'));
     });
 };

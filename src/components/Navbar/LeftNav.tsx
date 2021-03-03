@@ -29,7 +29,7 @@ type LinkProps = {
 
 const LinkComponent: React.FC<LinkProps> = ({ title, img, url }) => {
   return (
-    <Link className={classes.aside_link} to={`/${url}`}>
+    <Link className={classes.aside_link} to={`/categories/${url}`}>
       <div className={classes.link_container}>
         <img src={img} alt='' />
         <span className={classes.link_title}>{title}</span>
