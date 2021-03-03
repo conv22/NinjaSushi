@@ -1,0 +1,56 @@
+@import '../../App.scss';
+.popup_container {
+  position: fixed;
+  z-index: 400001;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 1;
+  transition: 0.4s ease;
+  font-family: $font-family;
+}
+%popup {
+  position: fixed;
+  max-width: 620px;
+  left: 50%;
+  margin: auto;
+  transform: translate(-50%, 0);
+  transition: 0.3s ease;
+  display: inline-flex;
+  border-radius: 4px;
+  height: 64px;
+  align-items: center;
+  padding: 16px;
+  visibility: hidden;
+  opacity: 0;
+  top: 100px;
+  z-index: 99999;
+  img {
+    margin-right: 16px;
+  }
+}
+
+.success {
+  @extend %popup;
+  background-color: #e2f2c3;
+  border: 1px solid #84c502;
+  color: #84c502;
+}
+.success.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+}
+.error {
+  @extend %popup;
+  background-color: #fbdad2;
+  border: 1px solid $orange-color;
+  color: $orange-color;
+}
+.error.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+}

@@ -1,14 +1,15 @@
 import { AppThunk } from '../store';
 import {
   LOAD_PROFILE,
+  LOGOUT_PROFILE,
+  SET_ERROR_PROFILE,
+  CLEAR_ERROR_PROFILE,
   loadProfileAction,
   logoutProfileAction,
-  LOGOUT_PROFILE,
   createProfileError,
-  SET_ERROR_PROFILE,
   clearProfileError,
-  CLEAR_ERROR_PROFILE,
 } from './types';
+import { showPopUpAction } from '../reducers/PopUpReducer';
 import { auth, GoogleProvider, FacebookProvider } from '../../firebase';
 
 export const registerActionThunk = (credentials: {
@@ -19,10 +20,12 @@ export const registerActionThunk = (credentials: {
     .createUserWithEmailAndPassword(credentials.email, credentials.password)
     .then(userCredentials => {
       dispatch(errorClear());
+      dispatch(showPopUpAction('success', 'Успешно'));
       dispatch(loadProfile(userCredentials.user));
     })
     .catch(error => {
       const { code, message } = error;
+      dispatch(showPopUpAction('error', message));
       dispatch(errorCreator(message, code));
     });
 };
@@ -35,10 +38,12 @@ export const loginActionThunk = (credentials: {
     .signInWithEmailAndPassword(credentials.email, credentials.password)
     .then(userCredential => {
       dispatch(errorClear());
+      dispatch(showPopUpAction('success', 'Успешно'));
       dispatch(loadProfile(userCredential.user));
     })
     .catch(error => {
       const { code, message } = error;
+      dispatch(showPopUpAction('error', message));
       dispatch(errorCreator(message, code));
     });
 };
@@ -48,10 +53,12 @@ export const loginActionGoogleThunk = (): AppThunk => dispatch => {
     .signInWithPopup(GoogleProvider)
     .then(result => {
       dispatch(errorClear());
+      dispatch(showPopUpAction('success', 'Успешно'));
       dispatch(loadProfile(result.user));
     })
     .catch(error => {
       const { code, message } = error;
+      dispatch(showPopUpAction('error', message));
       dispatch(errorCreator(message, code));
     });
 };
@@ -61,10 +68,12 @@ export const loginActionFacebookThunk = (): AppThunk => dispatch => {
     .signInWithPopup(FacebookProvider)
     .then(result => {
       dispatch(errorClear());
+      dispatch(showPopUpAction('success', 'Успешно'));
       dispatch(loadProfile(result.user));
     })
     .catch(error => {
       const { code, message } = error;
+      dispatch(showPopUpAction('error', message));
       dispatch(errorCreator(message, code));
     });
 };
@@ -73,10 +82,12 @@ export const logoutActionThunk = (): AppThunk => dispatch => {
   auth
     .signOut()
     .then(() => {
+      dispatch(showPopUpAction('success', 'Успешно'));
       dispatch(logoutAction());
     })
     .catch(error => {
       const { msg, code } = error;
+      dispatch(showPopUpAction('error', msg));
       dispatch(errorCreator(msg, code));
     });
 };

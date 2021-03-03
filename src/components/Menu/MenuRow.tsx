@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addItemThunkAction } from '../../redux/cart/actions';
 import { menuItem } from '../../redux/menu/types';
 import classes from './Menu.module.scss';
@@ -51,14 +52,18 @@ export const RowItem: React.FC<RowItemProps> = ({
   id,
 }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const addToCard = (id: string) => {
     dispatch(addItemThunkAction(id));
   };
 
   return (
     <div className={classes.item}>
-      <div className={classes.item_img}>
-        <img src={image} alt='' />
+      <div
+        className={classes.item_img}
+        onClick={() => history.push(`/items/${id}`)}
+      >
+        <img src={image} alt={title} />
       </div>
       <div className={classes.item_description}>
         <div className={classes.item_title}>{title}</div>

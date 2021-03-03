@@ -1,0 +1,102 @@
+@import '../App.scss';
+.product_container {
+  margin: 0 4.5%;
+  margin-top: 32px;
+  display: flex;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  position: relative;
+  font-family: $font-family;
+}
+.image {
+  width: 50%;
+  padding-right: 32px;
+  max-height: 486px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100%;
+  }
+}
+.title {
+  font-size: 2.9vw;
+  line-height: 1.14;
+  font-weight: 600;
+}
+.content {
+  width: 50%;
+  padding-left: 32px;
+}
+.weight {
+  display: flex;
+  margin-top: 24px;
+  align-items: center;
+  span {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.64);
+    margin-right: 24px;
+    line-height: 1;
+  }
+}
+.ingridients {
+  margin-top: 24px;
+}
+.small {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.64);
+  display: block;
+  margin-bottom: 8px;
+}
+.ingridients_list {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+@media only screen and (max-width: 1550px) {
+  .product_container {
+    margin: 0 40px;
+    margin-top: 32px;
+  }
+  .weight {
+    span {
+      font-size: 16px;
+    }
+  }
+  .small {
+    color: rgba(0, 0, 0, 0.48);
+  }
+  .title {
+    font-size: 32px;
+  }
+}
+@media only screen and(max-width: 860px) {
+  .product_container {
+    flex-direction: column;
+  }
+  .image {
+    width: 100%;
+    padding: 0;
+    img {
+      max-width: 460px;
+    }
+  }
+  .content {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media only screen and(max-width: 768px) {
+  .product_container {
+    border: 0;
+    margin: 0;
+    padding: 0 16px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  .content {
+    margin-bottom: 24px;
+  }
+}

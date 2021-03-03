@@ -15,3 +15,7 @@ export const loadLS = (): CartItem[] | [] => {
 export const setLS = (items: CartItem[]): void => {
   localStorage.setItem('cartItems', JSON.stringify(items));
 };
+
+export const removeLs = (): void => {
+  localStorage.removeItem('cartItems');
+};

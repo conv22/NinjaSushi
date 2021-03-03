@@ -1,5 +1,3 @@
-import { DocumentReference } from '@firebase/firestore-types';
-
 export const LOAD_MENU = 'LOAD_MENU';
 export const SELECT_ITEM = 'SELECT_ITEM';
 export const SELECT_CATEGORY = 'SELECT_CATEGORY';
@@ -23,7 +21,7 @@ export type menuItem = {
   description: string;
   price: number;
   weight: number;
-  ingridients?: DocumentReference[] | ingridientType[];
+  ingridients?: ingridientType[];
   category: string;
   image: string;
 };

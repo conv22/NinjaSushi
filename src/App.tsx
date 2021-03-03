@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
 import { LeftNav } from './components/Navbar/LeftNav';
 import { RightNav } from './components/Navbar/RightNav';
+import PopUp from './components/PopUp/PopUp';
 import MainPage from './Pages/MainPage';
 import ProductPage from './Pages/ProductPage';
 import CategoryPage from './Pages/CategoryPage';
@@ -25,8 +26,9 @@ const App: React.FC = () => {
       <LeftNav />
       <RightNav />
       <Route path='/' exact component={MainPage} />
-      <Route path='/:category/' component={CategoryPage} />
       <Route path='/items/:id' component={ProductPage} />
+      <Route path='/categories/:category' component={CategoryPage} />
+      <PopUp />
     </Router>
   );
 };

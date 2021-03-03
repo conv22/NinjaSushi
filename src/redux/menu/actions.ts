@@ -1,12 +1,12 @@
 import {
+  SELECT_ITEM,
+  SELECT_CATEGORY,
   LOAD_MENU,
   loadMenuType,
-  menuItem,
   selectMenuItem,
-  SELECT_ITEM,
   selectMenuCategory,
-  SELECT_CATEGORY,
   ingridientType,
+  menuItem,
 } from './types';
 import { AppThunk } from '../store';
 import { db } from '../../firebase';
@@ -47,6 +47,18 @@ export const loadMenuCategoryThunkAction = (
     .then(() => dispatch(loadCategoryAction(items)))
     .catch(error => {
       console.log('Error getting documents: ', error);
+    });
+};
+
+export const loadMenuItemThunkAction = (id: string): AppThunk => dispatch => {
+  let item: menuItem;
+  let ingridients: ingridientType[] = [];
+  db.collection('menu')
+    .doc(id)
+    .get()
+    .then(snap => {
+      item = snap.data() as menuItem;
+      item.id = id;
     });
 };
 

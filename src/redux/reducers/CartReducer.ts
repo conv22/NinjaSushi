@@ -2,10 +2,11 @@ import {
   ADD_ITEM,
   DELETE_ITEM,
   CHANGE_ITEM,
+  CREATE_ORDER,
   cartActionTypes,
   initialStateType,
 } from '../cart/types';
-import { loadLS, setLS } from '../../utils/localStorageCart';
+import { loadLS } from '../../utils/localStorageCart';
 
 const initialState: initialStateType = {
   items: loadLS(),
@@ -37,6 +38,12 @@ const CartReducer = (
           }
           return item;
         }),
+      };
+    }
+    case CREATE_ORDER: {
+      return {
+        ...state,
+        items: [],
       };
     }
     default:

@@ -1,10 +1,10 @@
 import {
-  ProfileActionTypes,
   SET_ERROR_PROFILE,
   CLEAR_ERROR_PROFILE,
   LOAD_PROFILE,
   LOGOUT_PROFILE,
   InitialStateType,
+  ProfileActionTypes,
 } from '../profile/types';
 
 const initialState: InitialStateType = {
