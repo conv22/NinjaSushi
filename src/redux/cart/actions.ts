@@ -53,6 +53,17 @@ export const addItemThunkAction = (id: string): AppThunk => (
   }
 };
 
+export const changeQuantityActionThunk = (
+  quantity: number,
+  id: string
+): AppThunk => (dispatch, getState) => {
+  dispatch(changeItemAction(id, quantity));
+  const item = getState().cart.items.find(item => item.id === id);
+  if (item!.quantity < 1) {
+    dispatch(deleteItemAction(id));
+  }
+};
+
 export const createOrderActionThunk = (address: string): AppThunk => (
   dispatch,
   getState
@@ -67,7 +78,7 @@ export const createOrderActionThunk = (address: string): AppThunk => (
     })
     .then(() => {
       dispatch(unLoadingAction(UNLOAD_CART));
-      dispatch(showPopUpAction('success', 'Товар добавлен в корзину'));
+      dispatch(showPopUpAction('success', 'Заказ сделан'));
       removeLs();
       dispatch(createOrderAction());
     })

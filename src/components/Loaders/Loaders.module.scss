@@ -36,6 +36,13 @@
   border-radius: 100%;
   animation: spinRight 800ms linear infinite;
 }
+.product_loader {
+  width: 6vmax;
+  height: 6vmax;
+  border-right: 4px solid #ee6344;
+  border-radius: 100%;
+  animation: spinRight 800ms linear infinite;
+}
 
 .cart_loader::before,
 .cart_loader::after {
@@ -50,9 +57,30 @@
   border-radius: 100%;
   animation: spinLeft 800ms linear infinite;
 }
+.product_loader::before,
+.product_loader::after {
+  width: 4vmax;
+  height: 4vmax;
+  display: block;
+  position: absolute;
+  top: calc(50% - 1vmax);
+  left: calc(50% - 1vmax);
+  border-left: 3px solid #ee6344;
+  border-radius: 100%;
+  animation: spinLeft 800ms linear infinite;
+}
 .cart_loader::after {
   width: 2vmax;
   height: 2vmax;
+  top: calc(50% - 1vmax);
+  left: calc(50% - 1vmax);
+  border: 0;
+  border-right: 2px solid #ee6344;
+  animation: none;
+}
+.product_loader::after {
+  width: 4vmax;
+  height: 4vmax;
   top: calc(50% - 1vmax);
   left: calc(50% - 1vmax);
   border: 0;

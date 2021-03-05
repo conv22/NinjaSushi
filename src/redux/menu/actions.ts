@@ -2,12 +2,16 @@ import {
   SELECT_ITEM,
   SELECT_CATEGORY,
   LOAD_MENU,
+  FILTER,
   loadMenuType,
   selectMenuItem,
   selectMenuCategory,
+  filterMenuCategory,
+  filterOptions,
   ingridientType,
   menuItem,
 } from './types';
+
 import {
   setLoadingAction,
   unLoadingAction,
@@ -71,14 +75,64 @@ export const loadMenuCategoryThunkAction = (
 export const loadMenuItemThunkAction = (id: string): AppThunk => dispatch => {
   dispatch(setLoadingAction(LOADING_PRODUCT));
   let item: menuItem;
-  let ingridients: ingridientType[] = [];
   db.collection('menu')
     .doc(id)
     .get()
+    .then(querySnapshot => {
+      item = querySnapshot.data() as menuItem;
+      item.id = querySnapshot.id;
+      const promises: any[] = [];
+      if (item.ingridients) {
+        item.ingridients.forEach(doc => {
+          const ingridient = db.doc(`ingridients/${doc.id}`).get();
+          promises.push(ingridient);
+        });
+      }
+      return Promise.all(promises);
+    })
     .then(snap => {
-      item = snap.data() as menuItem;
-      item.id = id;
+      const ingridients: ingridientType[] = [];
+      snap.forEach(snap => {
+        const data = snap.data() as ingridientType;
+        data.id = snap.id;
+        ingridients.push(data);
+      });
+      item.ingridients = ingridients;
+      dispatch(unLoadingAction(UNLOAD_PRODUCT));
+      dispatch(loadItemAction(item));
+    })
+    .catch(error => {
+      dispatch(unLoadingAction(UNLOAD_PRODUCT));
+      alert(error);
     });
+};
+
+//Sort actions
+
+export const sortMenuThunk = (option: filterOptions): AppThunk => (
+  dispatch,
+  getState
+) => {
+  const items = getState().menu.selectedCategory;
+  if (option === 'price_up') {
+    dispatch(filterMenuAction([...items!].sort((a, b) => a.price - b.price)));
+  }
+  if (option === 'price_down') {
+    dispatch(filterMenuAction([...items!].sort((a, b) => b.price - a.price)));
+  }
+  if (option === 'title') {
+    dispatch(
+      filterMenuAction(
+        [...items!].sort((a, b) => a.title.localeCompare(b.title))
+      )
+    );
+  }
+  if (option === 'weight_up') {
+    dispatch(filterMenuAction([...items!].sort((a, b) => a.weight - b.weight)));
+  }
+  if (option === 'weight_down') {
+    dispatch(filterMenuAction([...items!].sort((a, b) => b.weight - a.weight)));
+  }
 };
 
 //action creators
@@ -100,6 +154,13 @@ const loadItemAction = (item: menuItem): selectMenuItem => {
 const loadCategoryAction = (items: menuItem[]): selectMenuCategory => {
   return {
     type: SELECT_CATEGORY,
+    payload: items,
+  };
+};
+
+const filterMenuAction = (items: menuItem[]): filterMenuCategory => {
+  return {
+    type: FILTER,
     payload: items,
   };
 };

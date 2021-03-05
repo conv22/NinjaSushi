@@ -1,8 +1,8 @@
 import React from 'react';
-import buttomfirst from '../assets/slider/image1.svg';
-import buttomsecond from '../assets/slider/image2.svg';
-import buttomthird from '../assets/slider/image3.svg';
-import buttomfourth from '../assets/slider/image4.svg';
+import buttomfirst from '../../assets/slider/image1.svg';
+import buttomsecond from '../../assets/slider/image2.svg';
+import buttomthird from '../../assets/slider/image3.svg';
+import buttomfourth from '../../assets/slider/image4.svg';
 import classes from './ButtomBar.module.scss';
 const ButtomBar: React.FC = () => {
   return (

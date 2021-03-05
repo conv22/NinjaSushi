@@ -1,23 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import roll from '../../assets/images/icons/sidenav/roll.svg';
 import sushi from '../../assets/images/icons/sidenav/sushi.svg';
 import set from '../../assets/images/icons/sidenav/set.svg';
 import drinks from '../../assets/images/icons/sidenav/drinks.svg';
 import sia from '../../assets/images/icons/sidenav/sia.svg';
 import classes from './LeftNav.module.scss';
-import { Link } from 'react-router-dom';
 
 const LeftNav: React.FC = () => {
   return (
-    <aside>
-      <div className={classes.aside}>
-        <LinkComponent title={'Роллы'} url={'roll'} img={roll} />
-        <LinkComponent title={'Суши'} url={'sushi'} img={sushi} />
-        <LinkComponent title={'Сеты'} url={'set'} img={set} />
-        <LinkComponent title={'Напитки'} url={'drink'} img={drinks} />
-        <LinkComponent title={'Соусы'} url={'sauces'} img={sia} />
-      </div>
-    </aside>
+    <div className={classes.aside}>
+      <LinkComponent title={'Роллы'} url={'roll'} img={roll} />
+      <LinkComponent title={'Суши'} url={'sushi'} img={sushi} />
+      <LinkComponent title={'Сеты'} url={'set'} img={set} />
+      <LinkComponent title={'Напитки'} url={'drink'} img={drinks} />
+      <LinkComponent title={'Соусы'} url={'sauces'} img={sia} />
+    </div>
   );
 };
 
@@ -38,4 +36,4 @@ const LinkComponent: React.FC<LinkProps> = ({ title, img, url }) => {
   );
 };
 
-export { LeftNav };
+export default LeftNav;

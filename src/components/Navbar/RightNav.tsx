@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  changeItemAction,
+  changeQuantityActionThunk,
   deleteItemAction,
   createOrderActionThunk,
 } from '../../redux/cart/actions';
@@ -11,7 +11,12 @@ import { CartItem } from '../../redux/cart/types';
 import Cart from '../../assets/images/icons/cart.svg';
 import classes from './RightNav.module.scss';
 
-const RightNav: React.FC = () => {
+type RightNavProps = {
+  close(): void;
+  open: boolean;
+};
+
+const RightNav: React.FC<RightNavProps> = ({ close, open }) => {
   const items = useSelector((state: RootState) => state.cart.items);
   const loading = useSelector((state: RootState) => state.loading.cart);
   if (loading) {
@@ -23,11 +28,16 @@ const RightNav: React.FC = () => {
   }
 
   return (
-    <aside>
-      <div className={classes.aside}>
-        {items.length > 0 ? <ItemList items={items} /> : <Empty />}
-      </div>
-    </aside>
+    <div className={open ? `${classes.aside} ${classes.open}` : classes.aside}>
+      {open && (
+        <span className={classes.close} onClick={close}>
+          <span></span>
+          <span></span>
+        </span>
+      )}
+
+      {items.length > 0 ? <ItemList items={items} /> : <Empty />}
+    </div>
   );
 };
 
@@ -95,11 +105,11 @@ const Item: React.FC<ItemProps> = ({ item }) => {
   };
 
   const plusItem = () => {
-    dispatch(changeItemAction(item.id, item.quantity + 1));
+    dispatch(changeQuantityActionThunk(item.quantity + 1, item.id));
   };
 
   const minusItem = () => {
-    dispatch(changeItemAction(item.id, item.quantity - 1));
+    dispatch(changeQuantityActionThunk(item.quantity - 1, item.id));
   };
 
   return (
@@ -139,4 +149,4 @@ const Empty: React.FC = () => {
   );
 };
 
-export { RightNav };
+export default RightNav;

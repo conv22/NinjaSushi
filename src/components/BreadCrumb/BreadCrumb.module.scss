@@ -1,0 +1,48 @@
+@import '../../App.scss';
+.breadcrumb {
+  padding-left: 4.5%;
+  margin-top: 32px;
+  width: 100%;
+  font-family: $font-family;
+  display: flex;
+  font-size: 0.9vw;
+}
+.link {
+  text-decoration: none;
+  display: inline-block;
+  color: $orange-color;
+  margin: 0 4px;
+  cursor: pointer;
+}
+.link:nth-of-type(1) {
+  margin-left: 0;
+}
+.link::after {
+  margin-left: 8px;
+  content: '/';
+  color: rgba(0, 0, 0, 0.64);
+}
+
+.link.active {
+  color: rgba(0, 0, 0, 0.64);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: default;
+}
+.link.active::after {
+  content: '';
+}
+
+@media only screen and (max-width: 1550px) {
+  .breadcrumb {
+    padding: 0 40px;
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .breadcrumb {
+    padding: 0 16px;
+    margin-top: 16px;
+  }
+}

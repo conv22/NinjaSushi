@@ -2,6 +2,7 @@ import {
   LOAD_MENU,
   SELECT_CATEGORY,
   SELECT_ITEM,
+  FILTER,
   menuActionTypes,
   initialStateType,
 } from '../menu/types';
@@ -31,6 +32,7 @@ const MenuReducer = (
         selectedItem: action.payload,
       };
     }
+    case FILTER:
     case SELECT_CATEGORY: {
       return {
         ...state,

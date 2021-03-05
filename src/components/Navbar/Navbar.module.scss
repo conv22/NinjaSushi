@@ -26,6 +26,7 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
 }
 .links_list {
   display: flex;
+  align-items: center;
   padding-left: 16px;
   margin-left: 56px;
   height: 100%;
@@ -44,9 +45,13 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   }
 }
 .link_link {
-  display: block;
+  display: flex;
+  align-items: center;
   color: $main-color;
   text-decoration: none;
+  svg {
+    font-size: 18px;
+  }
 }
 
 .link_link.active,
@@ -133,24 +138,7 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   font-size: 14px;
   color: rgba(0, 0, 0, 0.4);
 }
-.register {
-  display: flex;
-  align-items: center;
-}
-.register_button {
-  color: rgba(0, 0, 0, 0.64);
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-.register_button:hover {
-  color: $orange-color;
-}
-.register_button:focus {
-  outline: none;
-}
+
 //icons
 
 .icon {
@@ -159,6 +147,27 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
 
 .title {
   color: $main-color;
+}
+.cart {
+  display: none;
+  position: relative;
+  cursor: pointer;
+  margin-left: 12px;
+}
+.cart_num {
+  position: absolute;
+  font-size: 8px;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  line-height: 1;
+  padding: 6px;
+  min-width: 24px;
+  text-align: center;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  background-color: #ee6344;
+  color: #fff;
 }
 
 @media screen and (max-width: 1500px) {
@@ -184,13 +193,17 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   .title {
     display: none;
   }
-}
-@media screen and (max-width: 1200px) {
-  .icon {
-    filter: grayscale(1);
+  .link_link_text {
+    display: none;
   }
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
+  .icon,
+  .link_link svg,
+  .link_link img {
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
   .nav {
     height: 56px;
     padding: 0 16px;
@@ -202,6 +215,11 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
   }
   .register_button {
     font-size: 14px;
+    display: none;
+  }
+  .cart {
+    display: block;
+    margin-right: 16px;
   }
   // .links_list {
   //   display: none;
@@ -214,8 +232,5 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
     background: url('../../assets/images/icons/mobile-logo.svg') center
       no-repeat;
     background-size: contain;
-  }
-  .register_button {
-    font-size: 12px;
   }
 }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { ButtomBar } from './ButtomBar';
-import first from '../assets/slider/first.jpg';
-import second from '../assets/slider/second.png';
-import third from '../assets/slider/third.jpg';
-import fourth from '../assets/slider/fourth.jpg';
+import { ButtomBar } from './../ButtomBar/ButtomBar';
+import first from '../../assets/slider/first.jpg';
+import second from '../../assets/slider/second.png';
+import third from '../../assets/slider/third.jpg';
+import fourth from '../../assets/slider/fourth.jpg';
 import classes from './Slider.module.scss';
 
 const Slider: React.FC = () => {
