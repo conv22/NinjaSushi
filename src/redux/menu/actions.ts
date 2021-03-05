@@ -107,7 +107,7 @@ export const loadMenuItemThunkAction = (id: string): AppThunk => dispatch => {
     });
 };
 
-//Sort actions
+//Sort action
 
 export const sortMenuThunk = (option: filterOptions): AppThunk => (
   dispatch,
