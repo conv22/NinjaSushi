@@ -19,9 +19,9 @@ Technologies:
 * TypeScript
 
 # Screenshots
- <img src="https://imgur.com/6kNq4lP" width="400"/>
- <img src="https://imgur.com/xKOAGU9" width="400"/>
- <img src="https://imgur.com/5ovnTqM" width="900"/>
+ <img src="https://i.imgur.com/91nLQNU.png" width="400"/>
+ <img src="https://i.imgur.com/xKOAGU9.png" width="400"/>
+ <img src="https://i.imgur.com/jnoGvmg.png" width="900"/>
 
 ## Prerequisites
 1. Clone the repo
