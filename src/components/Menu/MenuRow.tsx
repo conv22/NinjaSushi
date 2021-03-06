@@ -8,14 +8,21 @@ import classes from './Menu.module.scss';
 type MenuRowProps = {
   items: menuItem[];
   title: string;
+  url: string;
 };
-const MenuRow: React.FC<MenuRowProps> = ({ title, items }) => {
+const MenuRow: React.FC<MenuRowProps> = ({ title, items, url }) => {
+  const history = useHistory();
   return (
     <div className={classes.row}>
       <div className={classes.row_header}>
         <div className={classes.row_header_left}>{title}</div>
         <div className={classes.row_header_right}>
-          <button className={classes.row_button}>Смотреть все</button>
+          <button
+            className={classes.row_button}
+            onClick={() => history.push(`/categories/${url}`)}
+          >
+            Смотреть все
+          </button>
         </div>
       </div>
       <div className={classes.row_items}>

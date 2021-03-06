@@ -22,21 +22,26 @@ const Menu: React.FC = () => {
 
       <MenuRow
         title={'Роллы'}
+        url={'roll'}
         items={items.filter(item => item.category === 'roll')}
       />
       <MenuRow
+        url={'sushi'}
         title={'Суши'}
         items={items.filter(item => item.category === 'sushi')}
       />
       <MenuRow
+        url={'set'}
         title={'Сеты'}
         items={items.filter(item => item.category === 'set')}
       />
       <MenuRow
+        url={'drink'}
         title={'Напитки'}
         items={items.filter(item => item.category === 'drink')}
       />
       <MenuRow
+        url={'sauces'}
         title={'Соусы'}
         items={items.filter(item => item.category === 'sauces')}
       />

@@ -77,8 +77,8 @@ export const createOrderActionThunk = (address: string): AppThunk => (
       newItems,
     })
     .then(() => {
-      dispatch(unLoadingAction(UNLOAD_CART));
       dispatch(showPopUpAction('success', 'Заказ сделан'));
+      dispatch(unLoadingAction(UNLOAD_CART));
       removeLs();
       dispatch(createOrderAction());
     })

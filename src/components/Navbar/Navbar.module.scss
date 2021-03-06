@@ -233,4 +233,8 @@ $wrapper-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.12);
       no-repeat;
     background-size: contain;
   }
+  .links_list {
+    display: flex;
+    justify-content: space-between;
+  }
 }
