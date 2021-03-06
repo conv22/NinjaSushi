@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { MenuRow } from './MenuRow';
+import MenuRow from './MenuRow';
 import classes from './Menu.module.scss';
 import { RootState } from '../../redux/reducers/RootReducer';
 import { loadMenuThunkAction } from '../../redux/menu/actions';

@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { RootState } from '../../redux/reducers/RootReducer';
 import { loadMenuItemThunkAction } from '../../redux/menu/actions';
 import { addItemThunkAction } from '../../redux/cart/actions';
+import Item from './ProductItem';
 import BreadCrumb from '../../components/BreadCrumb/BreadCrumb';
 import ProductLoader from '../../components/Loaders/ProductLoader';
 import classes from './ProductPage.module.scss';
@@ -76,18 +77,4 @@ const ProductPage: React.FC<RouteComponentProps<RouteParams>> = ({ match }) => {
   );
 };
 
-type ItemProps = {
-  image: string;
-  title: string;
-};
-const Item: React.FC<ItemProps> = ({ image, title }) => {
-  return (
-    <li className={classes.item}>
-      <div className={classes.item_image}>
-        <img src={image} alt={title} />
-      </div>
-      <div className={classes.item_title}>{title}</div>
-    </li>
-  );
-};
 export default ProductPage;

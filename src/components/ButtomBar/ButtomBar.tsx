@@ -74,4 +74,4 @@ const ButtomBarData: ButtomBarItemProps[] = [
   },
 ];
 
-export { ButtomBar };
+export default ButtomBar;
