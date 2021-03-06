@@ -2,9 +2,10 @@
 
 ### A Ninja Sushi clone made using React, Redux and Firebase.
 
-<a href="https://convninja.herokuapp.com/" target="_blank" rel="noreferrer noopener"><b>Ninja Sushi</b> - View site</a>
+### Deploy 
+* <a href="https://convninja.herokuapp.com/" target="_blank" rel="noreferrer noopener"><b>Ninja Sushi</b> - View site</a>
 
-Technologies:
+### Technologies:
 * React
   - Redux
   - React Router
